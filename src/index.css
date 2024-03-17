@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.isActive {
+  color: #ec4899;
+  border-color: #ec4899;
+}
+
+#banner {
+  background-image: url('./banner-home.jpg');
+  background-attachment: fixed;
+  background-position-y: 100px;
+  background-size: contain;
+}
