@@ -14,8 +14,8 @@ export default function Home () {
             Descubre nuestros tragos
           </p>
           <NavLink
-          className={'flex justify-center items-center gap-2 border-2 w-[140px] h-12 rounded-lg hover:bg-white hover:text-black hover:text-lg duration-300'} 
-          to={'/tragos'}>
+            className={'flex justify-center items-center gap-2 border-2 w-[140px] h-12 rounded-lg hover:bg-white hover:text-black hover:text-lg duration-300'} 
+            to={'/tragos'}>
             <span>Tragos</span>
             <FaArrowRight className="mt-[1px]"/>
           </NavLink>
