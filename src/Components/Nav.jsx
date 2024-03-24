@@ -43,7 +43,6 @@ export default function Nav () {
         <FaBars/>
       </button>
 
-
     </section>
   )
 }
