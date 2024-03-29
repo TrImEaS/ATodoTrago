@@ -19,7 +19,7 @@ export default function Links () {
           h-8 border-transparent hover:text-pink-500 hover:border-pink-500 duration-300 border-b-2 group`}>
           Bebidas
         </NavLink>
-        <ul className="group absolute h-[0px] w-[150px] group-hover:h-auto group-hover:p-3 flex bg-[#111] group-hover:border-2 rounded-3xl rounded-tl-none duration-300 top-[35px] left-[20px] text-base flex-col items-center">
+        <ul className="group absolute h-[0px] w-[250px] group-hover:h-auto group-hover:p-5 flex bg-[#111] group-hover:border-2 rounded-3xl rounded-tl-none duration-300 top-[35px] left-[20px] text-base flex-col items-center">
           <li className="h-[30px] group-hover:block hidden">
             <NavLink
               to={'/tragos'}
