@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom"
 import { FaArrowRight } from 'react-icons/fa'
 import img1 from '../assets/estadisticas.png'
-import list from '../Data/list.json'
 
 export default function Home () {  
   return (
@@ -26,7 +25,7 @@ export default function Home () {
       </section>
 
       {/*Welcome to client*/}
-      <section className="flex flex-col px-10 gap-5 justify-center w-3/4">
+      <section className="flex flex-col px-10 gap-5 justify-center w-4/5">
         <h1 className="text-3xl font-bold">
           Bienvenido a nuestra pagina
         </h1>
@@ -44,7 +43,7 @@ export default function Home () {
       </section>
 
       {/*Info article*/}
-      <section className="flex flex-col px-10 gap-5 justify-center">
+      <section className="flex flex-col px-10 gap-5 justify-center w-4/5">
         <h1 className="text-3xl font-bold">
           Estamos creciendo
         </h1>
@@ -55,35 +54,6 @@ export default function Home () {
           <img 
             src={img1} 
             className="border-2 object-contain rounded-3xl h-[280px] w-[280px]" />
-        </div>
-      </section>
-
-      {/*Categories*/}
-      <section className="flex flex-col gap-5 px-10 w-3/4">
-        <h1 className="font-bold text-3xl w-full">
-          Categorias
-        </h1>
-        <div className="flex justify-evenly gap-20">
-          {list.map((categoriesObject) => (
-            Object.keys(categoriesObject.categories).map((category) => (
-              <ul
-                className="flex flex-col" 
-                key={category}>
-                <NavLink className='hover:text-pink-500 duration-300 text-2xl'>
-                  {category}
-                </NavLink>
-                {categoriesObject.categories[category].map((subcategory) => (
-                  <li
-                    className="flex flex-col w-full" 
-                    key={subcategory}>
-                    <NavLink className='hover:text-pink-500 duration-300 text-lg'>
-                      -{subcategory}
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-            ))
-          ))}
         </div>
       </section>
     </div>

@@ -23,7 +23,7 @@ export default function Nav () {
       </div>
 
       {/*Full screen Nav*/}
-      <div className=" max-lg:hidden flex items-center justify-around gap-x-5 w-[700px]">
+      <div className="max-lg:hidden flex items-center justify-around gap-x-5 w-[700px]">
         <Links/>
       </div>
 
@@ -38,7 +38,7 @@ export default function Nav () {
 
       {/*Mobile nav button*/}
       <button 
-        className="text-2xl"
+        className="text-2xl max-lg:flex hidden"
         onClick={handleMobileNav}>
         <FaBars/>
       </button>
