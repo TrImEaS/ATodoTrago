@@ -1,24 +1,22 @@
 [
   {
-    "Bebidas": {
-      "Shots": [
-        "Licores", 
-        "Ron", 
-        "Vodka"
-      ],
-      "Sin alcohol": [
-        "Batidos", 
-        "Cafes", 
-        "Mocktails",
-        "Tes"
-      ],
-      "Tragos": [
-        "Gin",
-        "Pisco",
-        "Tequila",
-        "Whisky",
-        "Otros"
-      ]
-    }
+    "Shots": [
+      "Licores", 
+      "Ron", 
+      "Vodka"
+    ],
+    "Sin alcohol": [
+      "Batidos", 
+      "Cafes", 
+      "Mocktails",
+      "Tes"
+    ],
+    "Tragos": [
+      "Gin",
+      "Pisco",
+      "Tequila",
+      "Whisky",
+      "Otros"
+    ]
   }
 ]

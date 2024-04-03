@@ -12,39 +12,78 @@ export default function Links () {
         Home
       </NavLink>
       
+      {/*bebidas menu*/}
       <div className="relative group flex">
         <NavLink
-          to={'/tragos'}
-          className={`${location.pathname === '/tragos' ? 'isActive' : ''} 
+          to={'/bebidas'}
+          className={`${location.pathname === '/bebidas' ? 'isActive' : ''} 
           h-8 border-transparent hover:text-pink-500 hover:border-pink-500 duration-300 border-b-2 group`}>
           Bebidas
         </NavLink>
-        <ul className="group absolute h-[0px] w-[250px] group-hover:h-auto group-hover:p-5 flex bg-[#111] group-hover:border-2 rounded-3xl rounded-tl-none duration-300 top-[35px] left-[20px] text-base flex-col items-center">
-          <li className="h-[30px] group-hover:block hidden">
+
+        <ul className="group absolute h-[0px] w-[150px] group-hover:h-auto flex flex-col bg-[#111] group-hover:border-4 rounded-xl duration-300 top-[33.5px] left-[20px] text-xl justify-around border-[#FF9BD2] z-[9999] max-lg:hidden">
+          <li className="group-hover:flex flex-col hidden">
             <NavLink
-              to={'/tragos'}
-              className={`${location.pathname === '/tragos?sub_category=subcategoria' ? 'isActive' : ''} 
-               border-transparent hover:text-pink-500 duration-300 relative group`}>
-              -Subcategoria
+              to={'/bebidas/shots'}
+              className='border-b-[3px] w-full hover:text-[#FF9BD2] duration-300 relative group pl-3 py-1 border-[#FF9BD2]'>
+              Shots
             </NavLink>
+            <ul className="text-base flex flex-col h-full">
+              {list[0].Shots.map(name => (
+                <li 
+                  key={name + 1} 
+                  className="group-hover:block hidden border-y pl-3 py-1 last:border-b-0 first:border-t-0">
+                  <NavLink
+                    to={`/bebidas/shots/?search=${name.toLowerCase()}`}
+                    className='hover:text-[#FF9BD2] duration-300 relative group'>
+                    -{name}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
           </li>
 
-          <li className="h-[30px] group-hover:block hidden">
+          <li className="group-hover:flex flex-col hidden">
             <NavLink
-              to={'/tragos'}
-              className={`${location.pathname === '/tragos?sub_category=subcategoria' ? 'isActive' : ''} 
-              border-transparent hover:text-pink-500 duration-300 relative group`}>
-              -Subcategoria
+              to={'/bebidas/sin_alcohol'}
+              className='border-y-[3px] hover:text-[#FF9BD2] duration-300 relative group pl-3 py-1 border-[#FF9BD2]'>
+              Sin alcohol
             </NavLink>
+            <ul className="text-base flex flex-col h-full">
+              {list[0]["Sin alcohol"].map(name => (
+                <li 
+                  key={name + 1} 
+                  className="group-hover:block hidden border-y pl-3 py-1 last:border-b-0 first:border-t-0">
+                  <NavLink
+                    to={`/bebidas/sin_alcohol/?search=${name.toLowerCase()}`}
+                    className={`hover:text-[#FF9BD2] duration-300 relative group`}>
+                    -{name}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
           </li>
 
-          <li className="h-[30px] group-hover:block hidden">
+          <li className="group-hover:flex flex-col hidden">
             <NavLink
-              to={'/tragos'}
-              className={`${location.pathname === '/tragos?sub_category=subcategoria' ? 'isActive' : ''} 
-              border-transparent hover:text-pink-500 duration-300 relative group`}>
-              -Subcategoria
+              to={'/bebidas/tragos'}
+              className={`${location.pathname === '/bebidas?sub_category=subcategoria' ? 'isActive' : ''} 
+              border-y-[3px] hover:text-[#FF9BD2] duration-300 relative group pl-3 py-1 border-[#FF9BD2]`}>
+              Tragos
             </NavLink>
+            <ul className="text-base flex flex-col h-full w-full">
+              {list[0].Tragos.map(name => (
+                <li 
+                  key={name + 1} 
+                  className="group-hover:block hidden border-y pl-3 py-1 last:rounded-b-0 first:border-t-0">
+                  <NavLink
+                    to={`/bebidas/tragos/?search=${name}`}
+                    className='hover:text-[#FF9BD2] duration-300 relative group'>
+                    -{name}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
           </li>
         </ul>
       </div>

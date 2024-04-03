@@ -10,7 +10,7 @@ export default function Nav () {
   const handleMobileNav = () => setMobileNav(!mobileNav)
 
   return (
-    <section className="flex items-center justify-between w-full h-[150px] px-20 text-lg font-semibold bg-[#111]">
+    <section className="flex items-center justify-between w-full h-[120px] px-20 text-lg font-semibold bg-[#4343]">
       {/*Logo*/}
       <div className="w-[100px] scale-[2]">
         <NavLink

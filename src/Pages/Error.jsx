@@ -5,11 +5,7 @@ export default function Error() {
   const navigate = useNavigate()
 
   return (
-    <div className='flex relative flex-col min-h-[520px] justify-between gap-2 py-7 px-3'>
-      <img 
-        src="404-error.jpg"
-        className='absolute bottom-5 w-full h-[450px]'
-        />
+    <div className='flex relative flex-col min-h-[600px] justify-between gap-10 py-7 px-3'>
 
       <div className='z-20 flex flex-col gap-2'>
         <h1 className='text-4xl font-bold'>Error 404</h1>
@@ -18,10 +14,14 @@ export default function Error() {
         </span>
       </div>
 
+      <img 
+        src="/404-error.jpg"
+        className=' bottom-5 w-full h-[500px] rounded-xl'
+        />
       <div className='flex items-center justify-center z-20'>
         <button 
           onClick={() => navigate('/')}
-          className='border border-black py-2 px-4 rounded-lg hover:bg-black hover:text-white duration-500 font-bold'>
+          className='border border-white py-2 px-4 rounded-lg hover:bg-white hover:text-black duration-500 font-bold'>
           Volver a home
         </button>
       </div>
