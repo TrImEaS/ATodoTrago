@@ -8,7 +8,7 @@
 }
 
 #banner {
-  background-image: url('./banner-home.jpg');
+  background-image: url('./assets/tragos-background.jpg');
   background-attachment: fixed;
   background-position-y: 100px;
   background-size: contain;

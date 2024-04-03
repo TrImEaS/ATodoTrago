@@ -29,7 +29,7 @@ export default function AboutUs() {
           <span> --{`>`} </span>        
           <NavLink 
             className='font-bold text-3xl hover:text-pink-500 duration-300'
-            to={'/contact'}>
+            to={'/contacto'}>
             Contáctanos!
           </NavLink>
         </span>
