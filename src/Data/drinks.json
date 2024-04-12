@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Machu Picchu",
+    "description": "Un trago de tres colores diferentes, cuya sencilla y divertida preparación no exige ingredientes sofisticados ni la necesidad del uso de una coctelera. Machu Picchu - un rico cóctel elaborado a base de pisco, licor de menta, jugo de naranja y granadina.",
+    "img": "machu_picchu.png"
+  },
+  {
+    "id": 2,
+    "name": "Machu Picchu",
+    "description": "Un trago de tres colores diferentes, cuya sencilla y divertida preparación no exige ingredientes sofisticados ni la necesidad del uso de una coctelera. Machu Picchu - un rico cóctel elaborado a base de pisco, licor de menta, jugo de naranja y granadina.",
+    "img": "machu_picchu.png"
+  },
+  {
+    "id": 3,
+    "name": "Machu Picchu",
+    "description": "Un trago de tres colores diferentes, cuya sencilla y divertida preparación no exige ingredientes sofisticados ni la necesidad del uso de una coctelera. Machu Picchu - un rico cóctel elaborado a base de pisco, licor de menta, jugo de naranja y granadina.",
+    "img": "machu_picchu.png"
+  }
+]
