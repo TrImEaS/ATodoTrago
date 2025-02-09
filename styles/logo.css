@@ -1,0 +1,19 @@
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px rgba(199, 44, 60, 0.5) solid;
+  border-radius: 4px;
+  width: 187px;
+  height: 62px;
+}
+
+.logo__text{
+  font-size: 32px;
+  line-height: 37.5px;
+  text-align: center;
+  font-weight: 700;
+  color: #C72C3C;
+  opacity: 80%;
+}
