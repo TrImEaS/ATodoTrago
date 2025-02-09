@@ -7,7 +7,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: url('/public/principal-bg-image.png');
+  background-image: url('./public/principal-bg-image.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
