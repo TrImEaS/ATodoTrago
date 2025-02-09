@@ -4,12 +4,13 @@
   justify-content: center;
   align-items: center;
   height: 87px;
-  width: 220px;
+  max-width: 220px;
   gap: 13px;
   padding: 5px 0;
   flex-direction: column;
   border-radius: 8px;
   border: 1px rgba(255, 255, 255, 0.13) solid;
+  width: 100%;
 }
 
 .question__title {
@@ -23,6 +24,9 @@
 
 .question__dots {
   display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
   gap: 21px;  
 }
 
@@ -35,4 +39,27 @@
 
 .question__dots-item:nth-child(1) {
   background: #22DAA8;
+}
+
+
+@media screen and (width <= 576px) {
+  .question {
+    max-width: 180px;
+    max-height: 60px;
+  }
+
+  .question__title {
+    font-size: 15px;
+  }
+
+  .question__dots-item {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+@media screen and (width <= 375px) {
+  .footer__link {
+    font-size: 12px;
+  }
 }

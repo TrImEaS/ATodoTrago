@@ -1,20 +1,22 @@
 import { createCards, selectCard } from "./functions/card.js";
 
-(() => {
-  //Iniciamos los componentes dandole opacidad para obtener una linda animacion al entrar al AD 
-  window.addEventListener('DOMContentLoaded', ()=>{
-    setTimeout(() => {
-      document.querySelector('.main__container').classList.add('visible');
-      document.querySelector('.footer').classList.add('visible');
-      
-    }, 100);
+window.addEventListener("DOMContentLoaded", async () => {
+  try {
+    // Inicializamos la pagina con una pequeña animacion en los componentes principales
+    document.querySelector(".main__container").classList.add("visible");
+    document.querySelector(".footer").classList.add("footer_visible");
 
-    //Creamos las Cards necesarias (en el caso de la prueba tecnica 3)
-    createCards(3);
-  });
-})();
+    // Creamos las tarjetas requeridas
+    await createCards(3);
 
-document.querySelector('.cards__container').addEventListener('click', (e)=> {
-  const movieContainerID = e.target.closest('.cards__container-item').id
-  selectCard({ movieContainerID })
-})
+    // Agregamos el event listener después de crear las tarjetas
+    const container = document.querySelector(".cards__container");
+    container.addEventListener("click", (e) => {
+      const clickedCard = e.target.closest(".cards__container-item");
+      selectCard(clickedCard.id);
+    });
+  } 
+  catch (error) {
+    console.error("Error initializing the application:", error);
+  }
+});

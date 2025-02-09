@@ -5,8 +5,9 @@
   background: rgba(0, 0, 0, 0.4);
   border: 2px rgba(199, 44, 60, 0.5) solid;
   border-radius: 4px;
-  width: 187px;
-  height: 62px;
+  max-width: 187px;
+  min-height: 62px;
+  width: 100%;
 }
 
 .logo__text{
@@ -16,4 +17,21 @@
   font-weight: 700;
   color: #C72C3C;
   opacity: 80%;
+}
+
+@media screen and (width <= 576px) {
+  .logo {
+    max-width: 150px;
+  }
+
+  .logo__text {
+    font-size: 20px;
+  }
+
+}
+
+@media screen and (width <= 375px) {
+  .logo {
+    font-size: 18px;
+  }
 }

@@ -21,6 +21,7 @@ body {
   background-color: rgba(40, 40, 40, .9);
   min-width: 100%;
   min-height: 100vh;
+  max-height: 100vh;
   padding-bottom: 20px;
   box-sizing: border-box;
 }
@@ -69,38 +70,15 @@ body {
   }
 }
 
-@media screen and (width <= 768px) {
+
+@media screen and (max-width: 680px) {
   .main__container {
-    transform: scale(.9);
+    padding-bottom: 50px;
   }
 }
 
-@media screen and (width <= 630px) {
+@media screen and (max-width: 580px) {
   .main__container {
-    transform: scale(.8);
-  }
-}
-
-@media screen and (width <= 570px) {
-  .main__container {
-    transform: scale(.66);
-  }
-}
-
-@media screen and (width <= 480px) {
-  .main__container {
-    transform: scale(.55);
-  }
-}
-
-@media screen and (width <= 375px) {
-  .main__container {
-    transform: scale(.53);
-  }
-}
-
-@media screen and (width <= 365px) {
-  .main__container {
-    transform: scale(.46);
+    gap: 20px;
   }
 }

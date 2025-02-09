@@ -1,34 +1,43 @@
-// const API_URL_MOVIES = '../Data/Movies.json';
-import { originalMovies } from "../Data/movies.js";  
-let selectedCount = 0;
-let movies = [];
+import { originalMovies } from "../data/movies.js";
 
-//Traemos las imagenes de la api (en este caso del json) utilizando API_URL_MOVIES como ruta
-// async function getMovies() {
-//   return await fetch(API_URL_MOVIES)
-//   .then(res => {
-//     if (!res.ok) 
-//       throw new Error('Error al traer datos');
-//     return res.json();  
-//   })
-//   .catch(error => console.error(error))
-// }
+const movieSelection = {
+  selectedCount: 1,
+  movies: originalMovies
+}
 
-//Recibe la cantidad de cards que debe de crear, siempre toma de incio las 5 primeras imagenes del array
+//Retorna iterador de cantidad de preguntas elegidas
+function getSelectedCount() {
+  return movieSelection.selectedCount;
+}
+
+//Incrementa iterador
+function incrementSelectedCount() {
+  movieSelection.selectedCount++;
+}
+
+//Retorna las peliculas
+function getMovies() {
+  return movieSelection.movies;
+}
+
+//Setea array movies a uno nuevo en donde no estan las opciones elegidas, para no repetirlas.
+function setMovies(newMovies) {
+  movieSelection.movies = newMovies;
+}
+
+// Crea la cantidad de tarjetas iniciales, tener en cuenta que si se incializa con un valor x, tenemos que tener x * 3 imagenes (si quantity es 3, entonces tenemos que tener 9 imagenes como minimo)
 export async function createCards(quantity) {
   try {
-    // const movies = await getMovies()
-    const movies = originalMovies
-    const container = document.querySelector('.cards__container');
+    const movies = getMovies();
+    const container = document.querySelector(".cards__container");
 
     for (let i = 0; i < quantity; i++) {
-      const card = document.createElement('article');
-      const cardImg = document.createElement('img');
-      
-      card.classList.add('cards__container-item');
+      const card = document.createElement("article");
+      const cardImg = document.createElement("img");
+
+      card.classList.add("cards__container-item");
       card.title = movies[i].title;
-      card.id = `option_${i + 1}`
-      cardImg.alt = `Movie_${i + 1}`;
+      card.id = `option_${i + 1}`;
       cardImg.id = movies[i].id;
       cardImg.src = movies[i].src;
 
@@ -41,128 +50,104 @@ export async function createCards(quantity) {
   }
 }
 
-//Recibe el id del contenedor y la funcion se encarga de actualizar las diferentes opciones (dependiendo la elegida) y se encarga de no repetir las opciones, ademas controla los cambios en diferentes elementos del DOM
-export async function selectCard({ movieContainerID }) {
+// Manejar selección de tarjeta
+export async function selectCard(movieOptionChoisen) {
   try {
-    if (movies.length === 0)
-      movies = originalMovies
-      // movies = await getMovies();
+    let movies = getMovies();
+    const dotsElements = document.getElementsByClassName("question__dots-item");
+    const questionTitle = document.querySelector(".question__title");
+    const cards = document.querySelectorAll(".cards__container-item");
+
+    let currentDisplayedMovieIds = Array.from(cards).map((card) => parseInt(card.querySelector("img").id));
+    const filteredMovies = movies.filter((movie) => !currentDisplayedMovieIds.includes(parseInt(movie.id)))
+    setMovies(filteredMovies);
+
+    if (getSelectedCount() === 1) {
+      updateMovies(movieOptionChoisen, cards);
+      dotsElements[0].style.backgroundColor = "transparent";
+      dotsElements[1].style.backgroundColor = "#22DAA8";
+      questionTitle.textContent = "QUESTION 2 OF 3:";
+    } 
     
-    const dotsElements = document.getElementsByClassName('question__dots-item')
-    const questionTitle = document.querySelector('.question__title')
-    const cards = document.querySelectorAll('.cards__container-item');
-    let currentDisplayedMovieIds = Array.from(cards).map(card => parseInt(card.querySelector('img').id));
-    movies = movies.filter(movie => !currentDisplayedMovieIds.includes(parseInt(movie.id)));
+    if (getSelectedCount() === 2) {
+      updateMovies(movieOptionChoisen, cards, 1);
+      dotsElements[1].style.backgroundColor = "transparent";
+      dotsElements[2].style.backgroundColor = "#22DAA8";
+      questionTitle.textContent = "QUESTION 3 OF 3:";
+    } 
     
-    if(selectedCount === 0) {
-      if(movieContainerID === 'option_1'){
-        cards.forEach((card, index) => {
-          const cardImg = card.querySelector('img')
-          cardImg.src = movies[index].src
-          cardImg.id = movies[index].id
-          activeBlinkAnimation(cardImg)
-        })
-        movies.sort((a,b) => b.id - a.id)
-      }
-
-      if(movieContainerID === 'option_2'){
-        movies.sort((a,b) => b.id - a.id)
-        cards.forEach((card, index) => {
-          const cardImg = card.querySelector('img')
-          cardImg.src = movies[index].src
-          cardImg.id = movies[index].id
-          activeBlinkAnimation(cardImg)
-        })
-      }
-
-      if(movieContainerID === 'option_3'){
-        movies.sort((a, b) => b.title.localeCompare(a.title))
-        cards.forEach((card, index) => {
-          const cardImg = card.querySelector('img')
-          cardImg.src = movies[index].src
-          cardImg.id = movies[index].id
-          activeBlinkAnimation(cardImg)
-        })
-      }
-      
-      dotsElements[0].style.backgroundColor = 'transparent'
-      dotsElements[1].style.backgroundColor = '#22DAA8'
-      questionTitle.textContent = 'QUESTION 2 OF 3:'
+    if (getSelectedCount() === 3) {
+      finalizeSelection(movieOptionChoisen);
     }
 
-    if(selectedCount === 1) {
-      if(movieContainerID === 'option_1'){
-        cards.forEach((card, index) => {
-          const cardImg = card.querySelector('img')
-          cardImg.src = movies[index + 1].src
-          cardImg.id = movies[index + 1].id
-          activeBlinkAnimation(cardImg)
-        })
-      }
-
-      if(movieContainerID === 'option_2'){
-        cards.forEach((card, index) => {
-          const cardImg = card.querySelector('img')
-          cardImg.src = movies[index].src
-          cardImg.id = movies[index].id
-          activeBlinkAnimation(cardImg)
-        })
-      }
-
-      if(movieContainerID === 'option_3'){
-        movies.sort((a,b) => a.id - b.id)
-        cards.forEach((card, index) => {
-          const cardImg = card.querySelector('img')
-          cardImg.src = movies[index].src
-          cardImg.id = movies[index].id
-          activeBlinkAnimation(cardImg)
-        })
-      }
-      
-      dotsElements[1].style.backgroundColor = 'transparent'
-      dotsElements[2].style.backgroundColor = '#22DAA8'
-      questionTitle.textContent = 'QUESTION 3 OF 3:'
-    }
-
-    if(selectedCount === 2) {
-      const lastMovieSelected = document.getElementById(movieContainerID).querySelector('img').id
-
-      setModalBtnLink(lastMovieSelected)
-      document.querySelector('.cards').classList.add('not_visible');
-      document.querySelector('.question').classList.add('not_visible');
-      
-      setTimeout(() => {
-        document.querySelector('.cards').remove();
-        document.querySelector('.question').remove();
-        document.querySelector('.main__container').style.gap = '102px';
-        document.querySelector('.modal').classList.remove('hidden');
-        document.querySelector('.modal').classList.add('visible');
-      }, 300);
-    }
-
-    selectedCount++;
-  } 
-  catch (error) {
+    incrementSelectedCount();
+  } catch (error) {
     console.error(error);
   }
 }
 
+// Actualizar las tarjetas según la opcion elegida, para asegurarnos que no se repitan las demas opciones a mostrar.
+function updateMovies(movieOptionChoisen, cards, offset = 0) {
+  let movies = getMovies();
+
+  if (movieOptionChoisen === "option_1") {
+    cards.forEach((card, index) => updateCard(card, movies[index + offset]));
+  } 
+  
+  if (movieOptionChoisen === "option_2") {
+    movies.sort((a, b) => b.id - a.id);
+    cards.forEach((card, index) => updateCard(card, movies[index]));
+  } 
+  
+  if (movieOptionChoisen === "option_3") {
+    movies.sort((a, b) => a.title.localeCompare(b.title));
+    cards.forEach((card, index) => updateCard(card, movies[index]));
+  }
+}
+
+// Actualiza la imagen de la tarjeta y le da la animacion de parpadeo
+function updateCard(card, movie) {
+  const cardImg = card.querySelector("img");
+  activeBlinkAnimation(cardImg);
+  cardImg.src = movie.src;
+  cardImg.id = movie.id;
+}
+
+// Se encarga de finalizar la selección de peliculas, desabilita los elementos demas y deja solo el modal final
+function finalizeSelection(movieOptionChoisen) {
+  const lastMovieSelected = document.getElementById(movieOptionChoisen).querySelector("img").id;
+  setModalBtnLink(lastMovieSelected);
+
+  document.querySelector(".cards").classList.add("not_visible");
+  document.querySelector(".question").classList.add("not_visible");
+
+  setTimeout(() => {
+    document.querySelector(".cards").remove();
+    document.querySelector(".question").remove();
+    
+    document.querySelector(".main__container").style.gap = "102px";
+    document.querySelector(".modal").classList.remove("hidden");
+    document.querySelector(".modal").classList.add("visible");
+  }, 300);
+}
+
+// Animación de parpadeo para cuando se elige una opcion
 function activeBlinkAnimation(element) {
-  element.classList.add('blink');
-  element.addEventListener('animationend', () => {
-    element.classList.remove('blink');
+  element.classList.add("blink");
+  element.addEventListener("animationend", () => {
+    element.classList.remove("blink");
   });
 }
 
+// Se encarga de establecerle el link final a IMDB al boton final
 async function setModalBtnLink(id) {
   try {
-    // const movies = await getMovies();
-    const movies = originalMovies
-    const movie = movies.find(movie => parseInt(movie.id) === parseInt(id))
+    const movies = originalMovies;
+    const movie = movies.find((movie) => parseInt(movie.id) === parseInt(id));
 
-    document.querySelector('.modal__button').href = `${movie.IMDB}`
+    document.querySelector(".modal__button").href = `${movie.IMDB}`;
   } 
   catch (error) {
-    console.error('Error to set modal link')  
+    console.error("Error to set modal link");
   }
 }
