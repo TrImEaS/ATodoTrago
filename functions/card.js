@@ -1,22 +1,24 @@
-const API_URL_MOVIES = '../Data/Movies.json';
+// const API_URL_MOVIES = '../Data/Movies.json';
+import { originalMovies } from "../Data/movies"; 
 let selectedCount = 0;
 let movies = [];
 
 //Traemos las imagenes de la api (en este caso del json) utilizando API_URL_MOVIES como ruta
-async function getMovies() {
-  return await fetch(API_URL_MOVIES)
-  .then(res => {
-    if (!res.ok) 
-      throw new Error('Error al traer datos');
-    return res.json();  
-  })
-  .catch(error => console.error(error))
-}
+// async function getMovies() {
+//   return await fetch(API_URL_MOVIES)
+//   .then(res => {
+//     if (!res.ok) 
+//       throw new Error('Error al traer datos');
+//     return res.json();  
+//   })
+//   .catch(error => console.error(error))
+// }
 
 //Recibe la cantidad de cards que debe de crear, siempre toma de incio las 5 primeras imagenes del array
 export async function createCards(quantity) {
   try {
-    const movies = await getMovies()
+    // const movies = await getMovies()
+    const movies = originalMovies
     const container = document.querySelector('.cards__container');
 
     for (let i = 0; i < quantity; i++) {
@@ -43,7 +45,8 @@ export async function createCards(quantity) {
 export async function selectCard({ movieContainerID }) {
   try {
     if (movies.length === 0)
-      movies = await getMovies();
+      movies = originalMovies
+      // movies = await getMovies();
     
     const dotsElements = document.getElementsByClassName('question__dots-item')
     const questionTitle = document.querySelector('.question__title')
@@ -153,7 +156,8 @@ function activeBlinkAnimation(element) {
 
 async function setModalBtnLink(id) {
   try {
-    const movies = await getMovies();
+    // const movies = await getMovies();
+    const movies = originalMovies
     const movie = movies.find(movie => parseInt(movie.id) === parseInt(id))
 
     document.querySelector('.modal__button').href = `${movie.IMDB}`
