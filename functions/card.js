@@ -1,5 +1,5 @@
 // const API_URL_MOVIES = '../Data/Movies.json';
-import { originalMovies } from "../Data/movies"; 
+import { originalMovies } from "../Data/movies.js";  
 let selectedCount = 0;
 let movies = [];
 
